@@ -38,5 +38,16 @@ public class BookManagerController {
         return new ResponseEntity<>(newBook, httpHeaders, HttpStatus.CREATED);
     }
 
+//    @PutMapping("/{ID}")
+//    public ResponseEntity<Optional<Book>> updateExistingBookByID(@PathVariable("ID") Long ID, @RequestBody Book book){
+//        Optional<Book> existingBook = bookManagerService.getBookByID(ID);
+//        if(existingBook.isPresent()){
+//            Book bookToReplace = existingBook.get();
+//            bookToReplace.
+//
+//        }
+//    }
+
+
 
 }
