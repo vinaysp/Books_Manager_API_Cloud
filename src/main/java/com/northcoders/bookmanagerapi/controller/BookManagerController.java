@@ -1,6 +1,7 @@
 package com.northcoders.bookmanagerapi.controller;
 
 import com.northcoders.bookmanagerapi.model.Book;
+import com.northcoders.bookmanagerapi.model.Genre;
 import com.northcoders.bookmanagerapi.service.BookManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -18,11 +19,18 @@ public class BookManagerController {
     @Autowired
     BookManagerService bookManagerService;
 
+
     @GetMapping
-    public ResponseEntity<List<Book>> getAllBooks() {
-        List<Book> books = bookManagerService.getAllBooks();
-        return new ResponseEntity<>(books, HttpStatus.OK);
+    public ResponseEntity<Iterable<Book>> getBooks(@RequestParam(required = false) Genre genre) {
+        Iterable<Book> books;
+        if (genre != null) {
+            books = bookManagerService.getBooksByGenre(genre);
+        } else {
+            books = bookManagerService.getAllBooks();
+        }
+        return ResponseEntity.ok(books);
     }
+
 
     @GetMapping("/{ID}")
     public ResponseEntity<Optional<Book>> getBookByID(@PathVariable("ID") Long ID){

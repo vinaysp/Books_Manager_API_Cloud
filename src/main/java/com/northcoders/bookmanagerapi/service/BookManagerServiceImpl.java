@@ -1,6 +1,7 @@
 package com.northcoders.bookmanagerapi.service;
 
 import com.northcoders.bookmanagerapi.model.Book;
+import com.northcoders.bookmanagerapi.model.Genre;
 import com.northcoders.bookmanagerapi.repository.BookManagerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class BookManagerServiceImpl implements BookManagerService {
         return books;
     }
 
+
     @Override
     public Optional<Book> getBookByID(Long ID){
         return bookManagerRepository.findById(ID);
@@ -31,6 +33,7 @@ public class BookManagerServiceImpl implements BookManagerService {
     public Book insertBook(Book book) {
         return bookManagerRepository.save(book);
     }
+
 
     @Override
     public Book updateBook(Long id, Book bookDetails) throws Exception {
@@ -48,5 +51,11 @@ public class BookManagerServiceImpl implements BookManagerService {
     @Override
     public void deleteBook(Long ID) {
         bookManagerRepository.deleteById(ID);
+    }
+
+
+    @Override
+    public Iterable<Book> getBooksByGenre(Genre genre) {
+        return bookManagerRepository.findByGenre(genre);
     }
 }
