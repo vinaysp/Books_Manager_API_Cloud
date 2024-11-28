@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Builder
 public class Book {
 
@@ -33,4 +33,16 @@ public class Book {
 
     @Column
     Genre genre;
+
+    public Book(Long id, String title, String description, String author, Genre genre) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.author = author;
+        this.genre = genre;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }
