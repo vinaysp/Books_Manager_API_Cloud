@@ -48,6 +48,12 @@ public class BookManagerController {
 //        }
 //    }
 
+    @PutMapping("/{bookId}")
+    public ResponseEntity<Book> updateBook(@PathVariable Long bookId, @RequestBody Book bookDetails) throws Exception {
+        Book updatedBook = bookManagerService.updateBook(bookId, bookDetails);
+        return ResponseEntity.ok(updatedBook);
+    }
+
 
 
 }

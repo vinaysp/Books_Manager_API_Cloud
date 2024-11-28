@@ -33,5 +33,16 @@ public class BookManagerServiceImpl implements BookManagerService {
         return bookManagerRepository.save(book);
     }
 
+    @Override
+    public Book updateBook(Long id, Book bookDetails) throws Exception {
+        Book book = bookManagerRepository.findById(id)
+                .orElseThrow(() -> new Exception("Book not found with id: " + id));
 
+        book.setTitle(bookDetails.getTitle());
+        book.setDescription(bookDetails.getDescription());
+        book.setAuthor(bookDetails.getAuthor());
+        book.setGenre(bookDetails.getGenre());
+
+        return bookManagerRepository.save(book);
+    }
 }
