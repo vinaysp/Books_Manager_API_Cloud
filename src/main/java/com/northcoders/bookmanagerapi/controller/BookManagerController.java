@@ -38,22 +38,16 @@ public class BookManagerController {
         return new ResponseEntity<>(newBook, httpHeaders, HttpStatus.CREATED);
     }
 
-//    @PutMapping("/{ID}")
-//    public ResponseEntity<Optional<Book>> updateExistingBookByID(@PathVariable("ID") Long ID, @RequestBody Book book){
-//        Optional<Book> existingBook = bookManagerService.getBookByID(ID);
-//        if(existingBook.isPresent()){
-//            Book bookToReplace = existingBook.get();
-//            bookToReplace.
-//
-//        }
-//    }
-
     @PutMapping("/{bookId}")
     public ResponseEntity<Book> updateBook(@PathVariable Long bookId, @RequestBody Book bookDetails) throws Exception {
         Book updatedBook = bookManagerService.updateBook(bookId, bookDetails);
         return ResponseEntity.ok(updatedBook);
     }
 
-
+    @DeleteMapping("/{ID}")
+    public ResponseEntity<Book> deleteBookByID(@PathVariable("ID") Long ID){
+        bookManagerService.deleteBook(ID);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 }
