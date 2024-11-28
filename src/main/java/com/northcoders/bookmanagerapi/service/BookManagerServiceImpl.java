@@ -2,7 +2,6 @@ package com.northcoders.bookmanagerapi.service;
 
 import com.northcoders.bookmanagerapi.model.Book;
 import com.northcoders.bookmanagerapi.repository.BookManagerRepository;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,5 +43,10 @@ public class BookManagerServiceImpl implements BookManagerService {
         book.setGenre(bookDetails.getGenre());
 
         return bookManagerRepository.save(book);
+    }
+
+    @Override
+    public void deleteBook(Long ID) {
+        bookManagerRepository.deleteById(ID);
     }
 }

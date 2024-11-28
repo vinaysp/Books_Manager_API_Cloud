@@ -11,5 +11,5 @@ public interface BookManagerService {
     Book insertBook(Book book);
     Optional<Book> getBookByID(Long ID);
     public Book updateBook(Long id, Book bookDetails) throws Exception;
-
+    public void deleteBook(Long ID);
 }
