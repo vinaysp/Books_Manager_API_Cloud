@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/book")
@@ -23,6 +24,12 @@ public class BookManagerController {
         return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
+    @GetMapping("/{ID}")
+    public ResponseEntity<Optional<Book>> getBookByID(@PathVariable("ID") Long ID){
+        Optional<Book> book = bookManagerService.getBookByID(ID);
+        return new ResponseEntity<>(book, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Book> addBook(@RequestBody Book book) {
         Book newBook = bookManagerService.insertBook(book);
@@ -30,5 +37,6 @@ public class BookManagerController {
         httpHeaders.add("book", "/api/v1/book/" + newBook.getId().toString());
         return new ResponseEntity<>(newBook, httpHeaders, HttpStatus.CREATED);
     }
+
 
 }
